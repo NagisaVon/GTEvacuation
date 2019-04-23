@@ -1,0 +1,7 @@
+- Players are the authority and the people subject to the drill.
+- Situation: fire drill
+- Rough outline of game:
+	- Game runs in the span of a year (365 days) with a preset drill frequency
+		- There is also a preset percent chance of a fire between each drill
+		- Evacuees choose whether or not to evacuate in response to the alarm
+			- The drill frequency/pattern will affect this as well as when each actual fire happens
