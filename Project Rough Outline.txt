@@ -5,3 +5,6 @@
 		- There is also a preset percent chance of a fire between each drill
 		- Evacuees choose whether or not to evacuate in response to the alarm
 			- The drill frequency/pattern will affect this as well as when each actual fire happens
+			- Panic factor directly influenced by drill frequency
+
+- Reference data: https://webspm.com/Articles/2015/04/01/Fire-Safety.aspx?m=1
