@@ -1,4 +1,6 @@
 import random
+import matplotlib.pyplot as plt
+
 class student:
     def __init__(self, memoryDecay,caution):
         self.memoryDecayRate = memoryDecay #how less prepared a student is per day
@@ -30,23 +32,23 @@ class fireDrill:
         for i in range(num):
             self.drillDays.append(random.randint(1,178))
 
-def isThisADrillDay(self,day):
-    if day in self.drillDays:
-        return True
+    def isThisADrillDay(self,day):
+        if day in self.drillDays:
+            return True
         else:
             return False
-                
-                def avgDaysBetweenDrill(self):
-                    sumOfAvgDays = 0
-for i in range(len(self.drillDays)):
-    if(i)==0:
-        sumOfAvgDays+=(self.drillDays[i])
-    else:
-        if(self.drillDays[i]>self.drillDays[i-1]):
-            sumOfAvgDays+=(self.drillDays[i]-self.drillDays[i-1])
-        else:
-            sumOfAvgDays+=(self.drillDays[i-1]-self.drillDays[i])
-return sumOfAvgDays/self.numberOfDrills
+
+    def avgDaysBetweenDrill(self):
+        sumOfAvgDays = 0
+        for i in range(len(self.drillDays)):
+            if(i)==0:
+                sumOfAvgDays+=(self.drillDays[i])
+            else:
+                if(self.drillDays[i]>self.drillDays[i-1]):
+                    sumOfAvgDays+=(self.drillDays[i]-self.drillDays[i-1])
+                else:
+                    sumOfAvgDays+=(self.drillDays[i-1]-self.drillDays[i])
+        return sumOfAvgDays/self.numberOfDrills
 
 #Assumption: on average, a student will not be prepared after one to two months of no drill
 #Assumption: on avergae, there are 178 days per school year
@@ -68,18 +70,38 @@ def average(stud,typ,drill):
     else:
         return respSum/178
 
-fire = fireDrill(50)
-studentList = [student(100/(45-random.randint(0,22)),75-random.randint(-25,75)) for i in range(19)]
 
-prepSum=0
-respSum=0
-for student in studentList:
-    prepSum+=average(student,"preparedness",fire)
-    respSum+=average(student,"resp",fire)
+plt.figure(1)
 
-print("Number of Drills: "+(str)(fire.numberOfDrills))
-print("Average number of Days between Drills: "+(str)(fire.avgDaysBetweenDrill()))
-print("\nAverage Prepareness of Students: "+(str)((int)(prepSum/len(studentList))))
-print("Average Responsenes of Students: "+(str)((int)(respSum/len(studentList))))
+avgD = []
+avgP = []
+avgR = []
 
+for i in range(1, 51):
+    fire = fireDrill(i)
+    studentList = [student(100/(45-random.randint(0,22)),75-random.randint(-25,75)) for k in range(19)]
 
+    prepSum=0
+    respSum=0
+    for stu in studentList:
+        prepSum+=average(stu,"preparedness",fire)
+        respSum+=average(stu,"resp",fire)
+
+    print("Number of Drills: "+(str)(fire.numberOfDrills))
+    print("Average number of Days between Drills: "+(str)(fire.avgDaysBetweenDrill()))
+    avgD.append(fire.avgDaysBetweenDrill())
+    print("\nAverage Prepareness of Students: "+(str)((int)(prepSum/len(studentList))))
+    avgP.append((int)(prepSum/len(studentList)))
+    print("Average Responsenes of Students: "+(str)((int)(respSum/len(studentList))) + "\n\n" )
+    avgR.append(((int)(respSum/len(studentList))) )
+
+plt.subplot(211)
+plt.plot(avgD)
+
+plt.subplot(212)
+plt.plot(avgP)
+
+plt.figure(2)
+plt.plot(avgR)
+
+plt.show()
