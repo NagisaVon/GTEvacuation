@@ -41,12 +41,12 @@ def isThisADrillDay(self,day):
 for i in range(len(self.drillDays)):
     if(i)==0:
         sumOfAvgDays+=(self.drillDays[i])
-            else:
-                if(self.drillDays[i]>self.drillDays[i-1]):
-                    sumOfAvgDays+=(self.drillDays[i]-self.drillDays[i-1])
-                else:
-                    sumOfAvgDays+=(self.drillDays[i-1]-self.drillDays[i])
-    return sumOfAvgDays/self.numberOfDrills
+    else:
+        if(self.drillDays[i]>self.drillDays[i-1]):
+            sumOfAvgDays+=(self.drillDays[i]-self.drillDays[i-1])
+        else:
+            sumOfAvgDays+=(self.drillDays[i-1]-self.drillDays[i])
+return sumOfAvgDays/self.numberOfDrills
 
 #Assumption: on average, a student will not be prepared after one to two months of no drill
 #Assumption: on avergae, there are 178 days per school year
