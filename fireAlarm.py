@@ -32,23 +32,23 @@ class fireDrill:
         for i in range(num):
             self.drillDays.append(random.randint(1,178))
 
-def isThisADrillDay(self,day):
-    if day in self.drillDays:
-        return True
+    def isThisADrillDay(self,day):
+        if day in self.drillDays:
+            return True
         else:
             return False
                 
-                def avgDaysBetweenDrill(self):
-                    sumOfAvgDays = 0
-for i in range(len(self.drillDays)):
-    if(i)==0:
-        sumOfAvgDays+=(self.drillDays[i])
+    def avgDaysBetweenDrill(self):
+        sumOfAvgDays = 0
+        for i in range(len(self.drillDays)):
+            if(i)==0:
+                sumOfAvgDays+=(self.drillDays[i])
             else:
                 if(self.drillDays[i]>self.drillDays[i-1]):
                     sumOfAvgDays+=(self.drillDays[i]-self.drillDays[i-1])
                 else:
                     sumOfAvgDays+=(self.drillDays[i-1]-self.drillDays[i])
-    return sumOfAvgDays/self.numberOfDrills
+        return sumOfAvgDays/self.numberOfDrills
 
 #Assumption: on average, a student will not be prepared after one to two months of no drill
 #Assumption: on avergae, there are 178 days per school year
@@ -97,13 +97,13 @@ avgList[1] = (int)(avgList[1]/10)
 avgList[2] = (int)(avgList[2]/10)
 
     
-    print("Number of Drills: "+(str)(fire.numberOfDrills))
-    print("Average number of Days between Drills: "+(str)(avgList[0]))
-    avgD.append(avgList[0])
-    print("\nAverage Prepareness of Students: "+(str)(avgList[1]))
-    avgP.append(avgList[1])
-    print("Average Responsenes of Students: "+(str)(avgList[2]) + "\n\n" )
-    avgR.append(avgList[2])
+print("Number of Drills: "+(str)(fire.numberOfDrills))
+print("Average number of Days between Drills: "+(str)(avgList[0]))
+avgD.append(avgList[0])
+print("\nAverage Prepareness of Students: "+(str)(avgList[1]))
+avgP.append(avgList[1])
+print("Average Responsenes of Students: "+(str)(avgList[2]) + "\n\n" )
+avgR.append(avgList[2])
 
 plt.subplot(211)
 plt.plot(avgD)
