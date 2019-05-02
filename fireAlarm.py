@@ -1,5 +1,6 @@
 import random
 import matplotlib.pyplot as plt
+import numpy as np
 
 class student:
     def __init__(self, memoryDecay,caution):
@@ -31,6 +32,7 @@ class fireDrill:
         self.drillDays = []
         for i in range(num):
             self.drillDays.append(random.randint(1,178))
+        self.drillDays.sort() # For calculate days between
 
     def isThisADrillDay(self,day):
         if day in self.drillDays:
@@ -44,10 +46,7 @@ class fireDrill:
             if(i)==0:
                 sumOfAvgDays+=(self.drillDays[i])
             else:
-                if(self.drillDays[i]>self.drillDays[i-1]):
-                    sumOfAvgDays+=(self.drillDays[i]-self.drillDays[i-1])
-                else:
-                    sumOfAvgDays+=(self.drillDays[i-1]-self.drillDays[i])
+                sumOfAvgDays+=(self.drillDays[i]-self.drillDays[i-1])
         return sumOfAvgDays/self.numberOfDrills
 
 #Assumption: on average, a student will not be prepared after one to two months of no drill
@@ -71,7 +70,6 @@ def average(stud,typ,drill):
         return respSum/178
 
 
-plt.figure(1)
 
 avgD = []
 avgP = []
@@ -83,7 +81,6 @@ for alarms in range(1, 51):
     for averageLoop in range(10):
         fire = fireDrill(alarms)
         studentList = [student(100/(45-random.randint(0,22)),75-random.randint(-25,75)) for k in range(19)]
-        
         prepSum=0
         respSum=0
         for stu in studentList:
@@ -92,26 +89,30 @@ for alarms in range(1, 51):
         avgList[0] += (int)(fire.avgDaysBetweenDrill())
         avgList[1] += (int)(prepSum/len(studentList))
         avgList[2] += (int)(respSum/len(studentList))
-avgList[0] = (int)(avgList[0]/10)
-avgList[1] = (int)(avgList[1]/10)
-avgList[2] = (int)(avgList[2]/10)
+    avgList[0] = (int)(avgList[0]/10)
+    avgD.append(avgList[0])
+    avgList[1] = (int)(avgList[1]/10)
+    avgP.append(avgList[1])
+    avgList[2] = (int)(avgList[2]/10)
+    avgR.append(avgList[2])
+    print("Number of Drills: "+(str)(fire.numberOfDrills))
+    print("Average number of Days between Drills: "+(str)(avgList[0]))
+    print("Average Prepareness of Students: "+(str)(avgList[1]))
+    print("Average Responsenes of Students: "+(str)(avgList[2]) + "\n\n" )
 
-    
-print("Number of Drills: "+(str)(fire.numberOfDrills))
-print("Average number of Days between Drills: "+(str)(avgList[0]))
-avgD.append(avgList[0])
-print("\nAverage Prepareness of Students: "+(str)(avgList[1]))
-avgP.append(avgList[1])
-print("Average Responsenes of Students: "+(str)(avgList[2]) + "\n\n" )
-avgR.append(avgList[2])
+fig, (ax1, ax2, ax3) =  plt.subplots(3, 1, sharex = True)
 
-plt.subplot(211)
-plt.plot(avgD)
+ax1.plot(avgD)
+ax1.set_title('Average number of Days between Drills')
 
-plt.subplot(212)
-plt.plot(avgP)
+ax2.plot(avgP)
+ax2.set_title('Average Prepareness of Students')
 
-plt.figure(2)
-plt.plot(avgR)
+ax3.plot(avgR)
+ax3.set_title('Average Responsenes of Students')
 
-plt.show()
+plt.tight_layout()
+plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+
+# plt.show()
+plt.savefig("a.png")
