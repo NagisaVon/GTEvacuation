@@ -97,8 +97,8 @@ for alarms in range(1, 51):
     avgR.append(avgList[2])
     print("Number of Drills: "+(str)(fire.numberOfDrills))
     print("Average number of Days between Drills: "+(str)(avgList[0]))
-    print("Average Prepareness of Students: "+(str)(avgList[1]))
-    print("Average Responsenes of Students: "+(str)(avgList[2]) + "\n\n" )
+    print("Average Preparedness of Students: "+(str)(avgList[1]))
+    print("Average Responsiveness of Students: "+(str)(avgList[2]) + "\n\n" )
 
 fig, (ax1, ax2, ax3) =  plt.subplots(3, 1, sharex = True)
 
@@ -106,10 +106,10 @@ ax1.plot(avgD)
 ax1.set_title('Average number of Days between Drills')
 
 ax2.plot(avgP)
-ax2.set_title('Average Prepareness of Students')
+ax2.set_title('Average Preparedness of Students')
 
 ax3.plot(avgR)
-ax3.set_title('Average Responsenes of Students')
+ax3.set_title('Average Responsiveness of Students')
 
 plt.tight_layout()
 plt.tight_layout(rect=[0, 0.03, 1, 0.95])
