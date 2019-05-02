@@ -9,6 +9,4 @@
 			- Responsiveness factor also directly influenced by drill frequency
 
 - 4% chance of fires occuring in one school per year
--tion
-a Game Theoretic Approach on Evacuation 
-roughly 178 school days per year 
+- roughly 178 school days per year 
